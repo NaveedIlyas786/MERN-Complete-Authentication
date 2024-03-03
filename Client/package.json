@@ -14,10 +14,12 @@
     "@mui/icons-material": "^5.15.10",
     "@mui/material": "^5.15.10",
     "@mui/styled-engine-sc": "^6.0.0-alpha.17",
+    "bcrypt": "^5.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.22.1",
-    "styled-components": "^6.1.8"
+    "styled-components": "^6.1.8",
+    "validator": "^13.11.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",

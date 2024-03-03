@@ -6,10 +6,10 @@ const Register = () => {
   const [CpassShow, setCPassShow] = useState(false);
 
   const [InputValue, setInputValues] = useState({
-    userName: "",
-    userEmail: "",
-    userPassword: "",
-    userCPassword: "",
+    name: "",
+    email: "",
+    password: "",
+    cpassword: "",
   });
 
   console.log("Initial Values: ", InputValue);
@@ -24,34 +24,49 @@ const Register = () => {
     });
   };
 
-  const addUserData= (e)=>{
+  const addUserData= async(e)=>{
     e.preventDefault()
-    const {userName,userEmail,userPassword,userCPassword} = InputValue;
-
+    console.log("Clicked!");
+    const {name,email,password,cpassword} = InputValue;
     
-    if(userName === ""){
+    if(name === ""){
       alert("Please Enter User Name!")
     }
-    else if(userEmail === ""){
+    else if(email === ""){
       alert("Please Enter User Email!")
     }
-    else if(!userEmail.includes("@")){
+    else if(!email.includes("@")){
       alert("Please Enter Valid Email!")
     }
-    else if(userPassword === ""){
+    else if(password === ""){
       alert("Please Enter Password!")
     }
-    else if(userCPassword === ""){
+    else if(cpassword === ""){
       alert("Please Enter Confirm Password!")
     }
-    else if(userPassword.length < 6 || userCPassword.length < 6){
+    else if(password.length < 6 || cpassword.length < 6){
       return alert("Password Must be 6 Characters!");
     }
-    else if(userPassword !== userCPassword){
+    else if(password !== cpassword){
       return alert("Password Not Matched!");
     }
     else{
-console.log("User Registered!");
+// console.log("User Registered!");
+//? Implementation for posting the Data start
+const data =await fetch("http://localhost:8009/register",{
+  method:"POST",
+  headers:{
+    "Content-Type":"application/json",
+  },
+  body: JSON.stringify({
+    name,email,password,cpassword
+  }),
+
+})
+
+
+const postdata= await data.json();
+console.log("postdata",postdata);
     }
   }
 
@@ -66,25 +81,25 @@ console.log("User Registered!");
 
           <form>
             <div className="form_input">
-              <label htmlFor="username">Name</label>
+              <label htmlFor="name">Name</label>
               <input
                 type="text"
-                name="userName"
-                id="username"
+                name="name"
+                id="name"
                 placeholder="Enter Your Name"
                 onChange={setValues}
-                value={InputValue.userName}
+                value={InputValue.name}
               />
             </div>
             <div className="form_input">
               <label htmlFor="email">Email</label>
               <input
                 type="email"
-                name="userEmail"
+                name="email"
                 id="email"
                 placeholder="Enter Your Email Address"
                 onChange={setValues}
-                value={InputValue.userEmail}
+                value={InputValue.email}
               />
             </div>
             <div className="form_input">
@@ -93,9 +108,9 @@ console.log("User Registered!");
                 <input
                   type={!passShow ? "password" : "text"}
                   onChange={setValues}
-                  value={InputValue.userPassword}
+                  value={InputValue.password}
                   placeholder="Enter Password"
-                  name="userPassword"
+                  name="password"
                   id="password"
                 />
                 <div
@@ -112,9 +127,9 @@ console.log("User Registered!");
                 <input
                   type={!CpassShow ? "password" : "text"}
                   onChange={setValues}
-                  value={InputValue.userCPassword}
+                  value={InputValue.cpassword}
                   placeholder="Confirm Password"
-                  name="userCPassword"
+                  name="cpassword"
                   id="Cpassword"
                 />
                 <div
