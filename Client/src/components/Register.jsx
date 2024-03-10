@@ -63,10 +63,19 @@ const data =await fetch("http://localhost:8009/register",{
   }),
 
 })
-
-
 const postdata= await data.json();
 console.log("postdata",postdata);
+if(postdata.status === 201){
+  alert("User Sucessfully Registered!")
+  setInputValues({
+    ...InputValue,
+    name: "",
+    email: "",
+    password: "",
+    cpassword: "",
+  })
+
+}
     }
   }
 

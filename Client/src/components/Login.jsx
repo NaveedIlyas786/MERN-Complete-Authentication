@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import "./mix.css";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login =  () => {
+  const navigate = useNavigate()
   const [passShow, setPassShow] = useState(false);
 
-  const [InputValue, setInputValue] = useState({
+  const [InputValues, setInputValues] = useState({
     email: "",
     password: "",
   });
@@ -14,31 +16,53 @@ const Login = () => {
 
     const { name, value } = e.target;
 
-    setInputValue(() => {
+    setInputValues(() => {
       return {
-        ...InputValue,
+        ...InputValues,
         [name]: value,
       };
     });
   };
-  console.log(InputValue);
+  console.log(InputValues);
 
-  const loginUser = (e) => {
-    e.preventDefault();
+ const loginUser = async(e) => {
+  e.preventDefault();
 
-    if(InputValue.email === "") {
-alert("PLease Enter your Email");
-}
-else if(InputValue.password === "") {
-      alert("PLease Enter Password");
+  const { email, password } = InputValues;
 
-    }
-    else{
-      console.log("Loged In !");
+  if(email === "") {
+    alert("Please Enter your Email");
+  }
+  else if(password === "") {
+    alert("Please Enter Password");
+  }
+  else{
+    const response = await fetch("http://localhost:8009/login",{
+      method:"POST",
+      headers:{
+        "Content-Type":"application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const postdata = await response.json();
+    console.log("postdata", postdata);
+    if(postdata.status === 201){
+      console.log("User Successfully Logged In!")
+      localStorage.setItem("usersDataToken",postdata.result.Storedtoken)
+      navigate("/dash")
+      setInputValues({
+        ...InputValues,
+        email: "",
+        password: "",
+      })
     }
   }
+}
+
 
   return (
+    
     <section>
       <>
         <div className="form_data">
@@ -54,7 +78,7 @@ else if(InputValue.password === "") {
                 type="email"
                 name="email"
                 id="email"
-                value={InputValue.email}
+                value={InputValues.email}
                 onChange={setValues}
                 placeholder="Enter Your Email Address"
               />
@@ -64,7 +88,7 @@ else if(InputValue.password === "") {
               <div className="two">
                 <input
                   type={!passShow ? "password" : "text"}
-                  value={InputValue.password}
+                  value={InputValues.password}
                   onChange={setValues}
                   placeholder="Enter Password"
                   name="password"
