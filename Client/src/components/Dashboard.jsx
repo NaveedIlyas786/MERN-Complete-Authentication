@@ -1,18 +1,17 @@
 import React, { useContext, useEffect } from "react";
 import "./Dashboard.css";
 import { useNavigate } from "react-router-dom";
-import { loginContext } from "./ContextProvider/Context";
+import { LoginContext } from "./ContextProvider/Context";
 const Dashboard = () => {
   const navigate = useNavigate()
   
-  const {loginData, setloginData} = useContext(loginContext);
+  const {loginData, setLoginData} = useContext(LoginContext);
 console.log(loginData);
 
   const DashboardValild = async function () {
-
-
     //! Here we will validate the user caomparing token with valid user Api
     let GettingToken = localStorage.getItem("usersDataToken");
+    console.log("GettingToken:",GettingToken);
     const response =await fetch("http://localhost:8009/validuser",{
       method:"POST",
       headers:{
@@ -22,10 +21,12 @@ console.log(loginData);
     });
 
     const data = await response.json();
-    if(data.status===401 || !data){
+    console.log("token:",data);
+    if(data.status == 401 || !data){
       navigate("*")
     }else{
-      setloginData(data)
+      console.log("User Verify !");
+      setLoginData(data)
       navigate("/dash")
     }
   };
@@ -42,7 +43,7 @@ console.log(loginData);
           alt=""
         />
         <h3>
-          User Email: <span>{loginData ? loginData.validUserOne.email : ""}</span>
+          User Email: <span>{loginData ? loginData?.validUserOne?.email : ""}</span>
         </h3>
       </div>
     </>

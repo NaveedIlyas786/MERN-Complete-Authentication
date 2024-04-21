@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import Avatar from "@mui/material/Avatar";
 import "./header.css";
-import { loginContext } from "./ContextProvider/Context";
+import { LoginContext } from "./ContextProvider/Context";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { useNavigate } from "react-router-dom";
 const Header = () => {
-  const { loginData, setloginData } = useContext(loginContext);
+  const { loginData, setLoginData } = useContext(LoginContext);
 const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
@@ -42,7 +42,7 @@ const navigate = useNavigate();
           console.log("User Logout!");
           localStorage.removeItem("usersDataToken");
           
-          setloginData(false)
+          setLoginData(false)
           navigate("/")
         }else{
           console.log("Error");
