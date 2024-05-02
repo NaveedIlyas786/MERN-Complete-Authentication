@@ -1,15 +1,16 @@
 {
     "version": 2,
+    "name":"MERN Authentication",
     "builds": [
         {
-            "src": "package.json",
+            "src": "app.js",
             "use": "@vercel/node"
         }
     ],
-    "rewrites": [
+    "routes": [
         {
-            "source": "/(.*)",
-            "destination": "/"
+            "src": "/(.*)",
+            "dest": "/app.js"
         }
     ]
 }
