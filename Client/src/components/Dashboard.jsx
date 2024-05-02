@@ -6,7 +6,7 @@ const Dashboard = () => {
   const navigate = useNavigate()
   
   const {loginData, setLoginData} = useContext(LoginContext);
-console.log(loginData);
+// console.log(loginData);
 
   const DashboardValild = async function () {
     //! Here we will validate the user caomparing token with valid user Api
@@ -34,6 +34,12 @@ console.log(loginData);
   useEffect(() => {
     DashboardValild();
   }, []);
+
+  const gofun=() => {
+    navigate('/extra')
+  }
+
+
   return (
     <>
       <div className="dashSection">
@@ -45,6 +51,7 @@ console.log(loginData);
         <h3>
           User Email: <span>{loginData ? loginData?.validUserOne?.email : ""}</span>
         </h3>
+          <button className="btn btn-danger" onClick={()=> gofun()}>Extra</button>
       </div>
     </>
   );

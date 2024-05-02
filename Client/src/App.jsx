@@ -8,6 +8,7 @@ import Box from '@mui/material/Box';
 import { Routes, Route, useNavigate } from "react-router-dom"
 import { useEffect, useContext, useState } from "react";
 import { LoginContext } from "./components/ContextProvider/Context";
+import Extra_Info from "./components/Extra_Info";
 
 
 function App() {
@@ -62,6 +63,7 @@ function App() {
               <Route path="/" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/dash" element={<Dashboard />} />
+              <Route path="/extra" element={<Extra_Info />} />
               <Route path="*" element={<Error />} />
             </Routes>
           </>
