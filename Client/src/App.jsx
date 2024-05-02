@@ -57,7 +57,7 @@ function App() {
             <Header />
 
             <Routes>
-              <Route path="/" element={<Login />} />
+              <Route exact path="/" element={<Login />} />
               <Route path="/register" element={<Register />} />
               <Route path="/dash" element={<Dashboard />} />
               <Route path="/extra" element={<Extra_Info />} />
