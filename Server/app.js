@@ -13,13 +13,13 @@ app.get("/",(req,res)=>{
 })
 
 app.use(express.json()); //? This is used to show the data in JSON form coming from frontend side
-app.use(cors(
-    {
-        origin:["http://mern-complete-authentication-server.vercel.app"],
-        methods:["POST","GET"],
-        credentials: true
-    }
-));         //? Use here for recieving data from frontend side means from different port number
+// app.use(cors(
+//     {
+//         origin:["http://mern-complete-authentication-server.vercel.app"],
+//         methods:["POST","GET"],
+//         credentials: true
+//     }
+app.use(cors());         //? Use here for recieving data from frontend side means from different port number
 app.use(router);         //? use here for implementing the routing
 app.use(cookieparser());
 app.listen((port),()=>{

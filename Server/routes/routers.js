@@ -4,6 +4,7 @@ const router = new express.Router();
 const userdb =require("../models/userSchema");
 const authenticate= require("../../Server/middleware/authentication");
 
+
 router.post('/register', async(req,res)=>{
     const {name,email,password,cpassword} = req.body;
     if(!name || !email || !password || !cpassword){
