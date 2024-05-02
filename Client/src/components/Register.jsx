@@ -53,7 +53,7 @@ const Register = () => {
     else{
 // console.log("User Registered!");
 //? Implementation for posting the Data start
-const data =await fetch("http://localhost:8009/register",{
+const data =await fetch("https://mern-full-authentication-server.vercel.app/register",{
   method:"POST",
   headers:{
     "Content-Type":"application/json",

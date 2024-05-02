@@ -26,7 +26,7 @@ const navigate = useNavigate();
   const LogoutUser = async() => {
         //! Here we will get the user and logout him
         let GettingToken = localStorage.getItem("usersDataToken");
-        const response =await fetch("http://localhost:8009/logout",{
+        const response =await fetch("https://mern-full-authentication-server.vercel.app/logout",{
           method:"GET",
           headers:{
             "Content-Type": "application/json",

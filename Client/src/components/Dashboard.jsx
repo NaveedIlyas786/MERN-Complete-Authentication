@@ -12,7 +12,7 @@ const Dashboard = () => {
     //! Here we will validate the user caomparing token with valid user Api
     let GettingToken = localStorage.getItem("usersDataToken");
     console.log("GettingToken:",GettingToken);
-    const response =await fetch("http://localhost:8009/validuser",{
+    const response =await fetch("https://mern-full-authentication-server.vercel.app/validuser",{
       method:"POST",
       headers:{
         "Content-Type": "application/json",
