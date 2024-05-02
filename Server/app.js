@@ -14,8 +14,9 @@ app.get("/",(req,res)=>{
 
 app.use(express.json()); //? This is used to show the data in JSON form coming from frontend side
 app.use(cors({
-    origin: 'http://localhost:5173' // replace with your frontend origin
+    origin: ['http://localhost:5173', 'https://mern-full-authentication-client.vercel.app']
   }));
+  
   
            //? Use here for recieving data from frontend side means from different port number
 app.use(router);         //? use here for implementing the routing
