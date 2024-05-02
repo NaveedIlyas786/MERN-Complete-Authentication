@@ -54,9 +54,9 @@ function App() {
 
   return (
     <>
-      {
+      {/* {
         data ? (
-          <>
+          <> */}
             <Header />
 
             <Routes>
@@ -66,13 +66,13 @@ function App() {
               <Route path="/extra" element={<Extra_Info />} />
               <Route path="*" element={<Error />} />
             </Routes>
-          </>
+          {/* </>
 
         ) : <Box sx={{ display: 'flex', justifyContent: "center", alignItems: "center", height: "100vh" }}>
           Loading... &nbsp;
           <CircularProgress />
         </Box>
-      }
+      } */}
 
 
     </>
