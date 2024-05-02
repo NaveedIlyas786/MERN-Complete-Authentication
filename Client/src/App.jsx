@@ -24,7 +24,7 @@ function App() {
     let token = localStorage.getItem("usersDataToken");
     console.log("user verify data token is: ",token);
 
-    const res = await fetch("http://localhost:8009/validuser", {
+    const res = await fetch("https://mern-full-authentication-server.vercel.app/validuser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,9 +54,6 @@ function App() {
 
   return (
     <>
-      {/* {
-        data ? (
-          <> */}
             <Header />
 
             <Routes>
@@ -66,15 +63,6 @@ function App() {
               <Route path="/extra" element={<Extra_Info />} />
               <Route path="*" element={<Error />} />
             </Routes>
-          {/* </>
-
-        ) : <Box sx={{ display: 'flex', justifyContent: "center", alignItems: "center", height: "100vh" }}>
-          Loading... &nbsp;
-          <CircularProgress />
-        </Box>
-      } */}
-
-
     </>
   );
 }
